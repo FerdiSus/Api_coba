@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
 use Illuminate\Http\Request;
+use App\Models\Pengembalian;
 
-class AnggotaController extends Controller
+class PengembalianController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $anggotaData =Anggota::all();
+        $kembaliData =Pengembalian::all();
         return response()->json(
             [
                 "message" =>"Berhasil Mendapatkan Data",
-                "data" =>$anggotaData
+                "data" =>$kembaliData
             ],200
         );
     }
@@ -26,7 +26,7 @@ class AnggotaController extends Controller
      */
     public function create(Request $request)
     {
-        $data = Anggota::create([
+        $data = Pengembalian::create([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,
             "penulis_buku" => $request->penulis_buku,
@@ -44,7 +44,6 @@ class AnggotaController extends Controller
             "Message" => "Berhasil Membuat Buku",
             "Data" => $data
         ],200);    
-
     }
 
     /**
@@ -58,7 +57,7 @@ class AnggotaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Anggota $anggota)
+    public function show(string $id)
     {
         //
     }
@@ -66,7 +65,7 @@ class AnggotaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Anggota $anggota)
+    public function edit(string $id)
     {
         //
     }
@@ -76,8 +75,7 @@ class AnggotaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        $data = Anggota::findOrFail($request->id);
+        $data = Pengembalian::findOrFail($request->id);
         $updateData = $data->update([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,
@@ -102,7 +100,7 @@ class AnggotaController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Anggota::findOrFail($id);
+        $data = Pengembalian::findOrFail($id);
 
     
         $after = $data->delete();

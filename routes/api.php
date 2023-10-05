@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
+Use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\RakController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +24,41 @@ Route::prefix('/buku')->group(function(){
     Route::post('/create',[BukuController::class,'create']);
     Route::put('/update',[BukuController::class,'update']);
     Route::delete('/delete',[BukuController::class,'delete']);
+});
+
+Route::prefix('/anggota')->group(function(){
+    Route::get('/',[AnggotaController::class,'index']);
+    Route::post('/create',[AnggotaController::class,'create']);
+    Route::put('/update',[AnggotaController::class,'update']);
+    Route::delete('/delete',[AnggotaController::class,'delete']);
+});
+    
+Route::prefix('/petugas')->group(function(){
+    Route::get('/',[PetugasController::class,'index']);
+    Route::post('/create',[PetugasController::class,'create']);
+    Route::put('/update',[PetugasController::class,'update']);
+    Route::delete('/delete',[PetugasController::class,'delete']);
+});
+
+Route::prefix('/rak')->group(function(){
+    Route::get('/',[RakController::class,'index']);
+    Route::post('/create',[RakController::class,'create']);
+    Route::put('/update',[RakController::class,'update']);
+    Route::delete('/delete',[RakController::class,'delete']);
+});
+
+Route::prefix('/peminjaman')->group(function(){
+    Route::get('/',[PeminjamanController::class,'index']);
+    Route::post('/create',[PeminjamanController::class,'create']);
+    Route::put('/update',[PeminjamanController::class,'update']);
+    Route::delete('/delete',[PeminjamanController::class,'delete']);
+});
+
+Route::prefix('/pengembalian')->group(function(){
+    Route::get('/',[PengembalianController::class,'index']);
+    Route::post('/create',[PengembalianController::class,'create']);
+    Route::put('/update',[PengembalianController::class,'update']);
+    Route::delete('/delete',[PengembalianController::class,'delete']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

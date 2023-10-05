@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
 use Illuminate\Http\Request;
+use App\Models\Peminjaman;
 
-class AnggotaController extends Controller
+class PeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $anggotaData =Anggota::all();
+        $pinjamData =Peminjaman::all();
         return response()->json(
             [
                 "message" =>"Berhasil Mendapatkan Data",
-                "data" =>$anggotaData
+                "data" =>$pinjamData
             ],200
         );
     }
@@ -26,7 +26,7 @@ class AnggotaController extends Controller
      */
     public function create(Request $request)
     {
-        $data = Anggota::create([
+        $data = Peminjaman::create([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,
             "penulis_buku" => $request->penulis_buku,
@@ -43,9 +43,7 @@ class AnggotaController extends Controller
         return response()->json([
             "Message" => "Berhasil Membuat Buku",
             "Data" => $data
-        ],200);    
-
-    }
+        ],200);        }
 
     /**
      * Store a newly created resource in storage.
@@ -58,7 +56,7 @@ class AnggotaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Anggota $anggota)
+    public function show(string $id)
     {
         //
     }
@@ -66,7 +64,7 @@ class AnggotaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Anggota $anggota)
+    public function edit(string $id)
     {
         //
     }
@@ -76,8 +74,7 @@ class AnggotaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
-        $data = Anggota::findOrFail($request->id);
+        $data = Peminjaman::findOrFail($request->id);
         $updateData = $data->update([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,
@@ -102,7 +99,7 @@ class AnggotaController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Anggota::findOrFail($id);
+        $data = Peminjaman::findOrFail($id);
 
     
         $after = $data->delete();
@@ -113,6 +110,6 @@ class AnggotaController extends Controller
 
         return response()->json([
             "message" => "Berhasil Hapus data"
-        ],200);
+        ],200); 
     }
 }
