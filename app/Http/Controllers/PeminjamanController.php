@@ -37,11 +37,11 @@ class PeminjamanController extends Controller
         ]);
 
         if(!$data) return response()->json([
-            "message" => "Gagal membuat Buku",
+            "message" => "Gagal membuat data",
         ],400);
         
         return response()->json([
-            "Message" => "Berhasil Membuat Buku",
+            "Message" => "Berhasil Membuat Data",
             "Data" => $data
         ],200);        }
 
@@ -58,7 +58,16 @@ class PeminjamanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Peminjaman::find($id);
+
+        if(!$data) return response()->json([
+            "message" => "Gagal Show"
+        ],400);
+
+        return response()->json([
+            "message" => "Berhasil show",
+            "data" => $data
+        ],200);
     }
 
     /**
@@ -74,7 +83,7 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = Peminjaman::findOrFail($request->id);
+        $data = Peminjaman::find($id);
         $updateData = $data->update([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,

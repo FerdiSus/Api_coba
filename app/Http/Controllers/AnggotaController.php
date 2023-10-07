@@ -58,9 +58,17 @@ class AnggotaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Anggota $anggota)
+    public function show(string $id)
     {
-        //
+        $data = Anggota::find($id);
+        if(!$data) return response()->json([
+            "message" => "Gagal Show"
+        ],400);
+
+        return response()->json([
+            "message" => "Berhasil show",
+            "data" => $data
+        ],200);
     }
 
     /**
@@ -77,7 +85,7 @@ class AnggotaController extends Controller
     public function update(Request $request, string $id)
     {
         
-        $data = Anggota::findOrFail($request->id);
+        $data = Anggota::find($id);
         $updateData = $data->update([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,

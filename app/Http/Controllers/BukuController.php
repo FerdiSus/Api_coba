@@ -44,7 +44,7 @@ class BukuController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $data = Buku::findOrFail($request->id);
+        $data = Buku::find($id);
         $updateData = $data->update([
             "kode_buku" => $request->kode_buku,
             "judul_buku" => $request->judul_buku,
@@ -80,4 +80,18 @@ class BukuController extends Controller
         ],200);
 
     }
+
+    public function show(string $id)
+    {
+        $data = Buku::find($id);
+        if(!$data) return response()->json([
+            "message" => "Gagal Show"
+        ],400);
+
+        return response()->json([
+            "message" => "Berhasil show",
+            "data" => $data
+        ],200);
+    }
+
 }
